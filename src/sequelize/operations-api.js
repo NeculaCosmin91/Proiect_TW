@@ -60,7 +60,14 @@ async function getCountries(){
         console.log(err);
     }
 }
-
+async function getTransportations(){
+    try {
+        return await Transportation.findAll();
+    } catch (err) {
+        console.log(err);
+    }
+}
+//
 async function createCountry(country){
     try {
       await Countries.create({
@@ -73,10 +80,36 @@ async function createCountry(country){
             throw err;
     }
 }
+async function createTransportation(transportations){
+    try {
+      await Transportation.create({
+          TransportationId: transportations.TransportationId,
+          TypeOfTransportation: transportations.TypeOfTransportation,
+          Price: transportations.Price,
+          CountryId:transportations.CoutryId
+      }) ; 
+    } catch (err) {
+            throw err;
+    }
+}
+function validateBody(sentBody, response, 
+    callbackFN=function(){}){
+        if(Object.keys(sentBody).length<3) 
+        return callbackFN();
+        else response.status(500).json("Incorect body! At least 3 characters")
+    }
 
 async function deleteCountry(CountryId){
     try {
         const record=await Countries.findByPk(CountryId);
+        if(record) await record.destroy();
+    } catch (err) {
+        throw err;
+    }
+}
+async function deleteTransportation(TransportationId){
+    try {
+        const record=await Transportation.findByPk(TransportationId);
         if(record) await record.destroy();
     } catch (err) {
         throw err;
@@ -99,6 +132,22 @@ async function updateCountry(CountryId, country){
         throw err;
     }
 }
+async function updateTransportaion(TransportationId, transportations){
+    try {
+        const record=await Transportation.findByPk(TransportationId);
+        if(record){
+            await record.update(
+                {
+                    TransportationId: transportations.TransportationId,
+                    TypeOfTransportation: transportations.TypeOfTransportation,
+                     Price: transportations.Price,
+                }
+            );
+        }
+    } catch (err) {
+        throw err;
+    }
+}
 
 
 export const seqOperationsApi={
@@ -107,4 +156,9 @@ export const seqOperationsApi={
     createCountry: createCountry,
     deleteCountry: deleteCountry,
     updateCountry: updateCountry,
+    validateBody:validateBody,
+    getTransportations:getTransportations,
+    createTransportation:createTransportation,
+    deleteTransportation:deleteTransportation,
+    updateTransportaion: updateTransportaion,
 };
