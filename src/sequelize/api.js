@@ -15,19 +15,19 @@ router.route("/sequelize/transportations").get(async function getSeqTransportati
 
 router.route("/sequelize/countries")
 .post(async function createCountry({body},response){
-   try {
-    seqOperationsApi.validateBody(body, response, async function handleSuccesfulValidation(){
-        if(Object.keys(body).length<3){
-            response.status(500).json("Incorect! Please insert at least 3 characters");
+    try {
+        // seqOperationsApi.validateBody(body, response, async function handleSuccesfulValidation(){
+             if(JSON.stringify(body) == "{}" || body === undefined || body === null){
+                 response.status(500).json("Incorect! Please insert at least 3 characters");
+             }
+             else{
+                 await seqOperationsApi.createCountry(body);
+                 response.status(200).json("The country was created!")
+             }
+         }
+         catch (err) {
+            console.error(`Error calling API: ${err}`);
         }
-        else{
-            await seqOperationsApi.createCountry(body);
-            response.status(200).json("The country was created!")
-        }
-    });
-    }catch (err) {
-       console.error(`Error calling API: ${err}`);
-   }
 });
 
 router.route("/sequelize/transportations")

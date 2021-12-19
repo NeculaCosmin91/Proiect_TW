@@ -96,7 +96,7 @@ function validateBody(sentBody, response,
     callbackFN=function(){}){
         if(Object.keys(sentBody).length<3) 
         return callbackFN();
-        else response.status(500).json("Incorect body! At least 3 characters")
+        else response.status(500).json("Incorect body!")
     }
 
 async function deleteCountry(CountryId){
