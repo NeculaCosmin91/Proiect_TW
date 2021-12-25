@@ -73,3 +73,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+<hr>
+
+**Dragomir Denis-Alexandru**: Am verificat partea de backend. Nu ai tratat suficiente cazuri de eroare.
+
+Punctaj - backend: **1,4 / 1,5**
+
+Punctaj - frontend: **TBD**
+
+Punctaj total (pentru zonele necompletate, pana la evaluare, se ia in considerare punctajul maxim): **3,9 / 4**
