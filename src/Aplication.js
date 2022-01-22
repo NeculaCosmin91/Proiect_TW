@@ -16,7 +16,7 @@ server.use('/api', router);
 
 
 
-var port=process.env.PORT||8080
+var port=process.env.PORT||8070
 server.listen(port, function afterStartServer(){
     console.log(`Server port is ${port};`);
 });

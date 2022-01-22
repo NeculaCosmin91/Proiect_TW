@@ -13,7 +13,7 @@ router.route("/sequelize/transportations").get(async function getSeqTransportati
     response.status(200).json(result);
 });
 
-router.route("/sequelize/countries")
+router.route("/sequelize/addcountries")
 .post(async function createCountry({body},response){
     try {
         // seqOperationsApi.validateBody(body, response, async function handleSuccesfulValidation(){
@@ -47,7 +47,7 @@ router.route("/sequelize/transportations")
    }
 });
 
-router.route("/sequelize/countries/:CountryId")
+router.route("/sequelize/deletecountries/:CountryId")
 .delete(async function deleteCountry({params:{CountryId},}, response){
     try {
         await seqOperationsApi.deleteCountry(+CountryId);
@@ -67,7 +67,7 @@ router.route("/sequelize/transportations/:TransportationId")
        }
 });
 
-router.route("/sequelize/countries/:CountryId").put(async function updateCountry({params:{CountryId},body}, response){
+router.route("/sequelize/updatecountries/:CountryId").put(async function updateCountry({params:{CountryId},body}, response){
     try {
         await seqOperationsApi.updateCountry(+CountryId, body);
         response.status(200).json("Succes");
